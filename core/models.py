@@ -50,6 +50,7 @@ class Experience(AuditModel):
     class Meta:
         db_table = "user_experiences"
 
+    created_by = models.ForeignKey(User, related_name='user_experiences', on_delete=models.PROTECT)
     company_name = models.CharField(max_length=255)
     job_title = models.CharField(max_length=255)
     job_description = models.TextField()
@@ -67,6 +68,7 @@ class Education(AuditModel):
     class Meta:
         db_table = "user_education"
 
+    created_by = models.ForeignKey(User, related_name='user_education', on_delete=models.PROTECT)
     institution = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -82,7 +84,8 @@ class Education(AuditModel):
 class Certification(AuditModel):
     class Meta:
         db_table = "user_certifications"
-
+    
+    created_by = models.ForeignKey(User, related_name='user_certifications', on_delete=models.PROTECT)
     certification_name = models.CharField(max_length=255)
     certification_institution = models.CharField(max_length=255)
     years = models.PositiveSmallIntegerField(blank=True, null=True)
